@@ -9,8 +9,8 @@ using Microsoft.EntityFrameworkCore.Storage.ValueConversion;
 namespace CadastroCliente.Migrations
 {
     [DbContext(typeof(ClienteContext))]
-    [Migration("20210209211840_InitialCreate")]
-    partial class InitialCreate
+    [Migration("20210210201148_InitalCreate")]
+    partial class InitalCreate
     {
         protected override void BuildTargetModel(ModelBuilder modelBuilder)
         {
@@ -21,14 +21,16 @@ namespace CadastroCliente.Migrations
 
             modelBuilder.Entity("CadastroCliente.Models.Cliente", b =>
                 {
-                    b.Property<double>("ID")
-                        .HasColumnType("double");
+                    b.Property<long>("ID")
+                        .ValueGeneratedOnAdd()
+                        .HasColumnType("bigint");
 
                     b.Property<string>("Bairro")
                         .HasColumnType("text");
 
-                    b.Property<double>("Cep")
-                        .HasColumnType("double");
+                    b.Property<string>("Cep")
+                        .HasMaxLength(8)
+                        .HasColumnType("varchar(8)");
 
                     b.Property<string>("Cidade")
                         .HasColumnType("text");
@@ -43,13 +45,14 @@ namespace CadastroCliente.Migrations
                         .HasColumnType("text");
 
                     b.Property<string>("Estado")
-                        .HasColumnType("text");
+                        .HasMaxLength(2)
+                        .HasColumnType("varchar(2)");
 
                     b.Property<string>("Nome")
                         .HasColumnType("text");
 
-                    b.Property<int>("Numero")
-                        .HasColumnType("int");
+                    b.Property<string>("Numero")
+                        .HasColumnType("text");
 
                     b.Property<string>("Sexo")
                         .HasColumnType("text");

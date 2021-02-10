@@ -1,5 +1,4 @@
 using Microsoft.EntityFrameworkCore;
-using MySql.EntityFrameworkCore.Extensions;
 using CadastroCliente.Models;
 
 namespace CadastroCliente.Data

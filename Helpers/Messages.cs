@@ -1,6 +1,4 @@
-using System;
-
-namespace CadastroCliente.Helpers 
+namespace CadastroCliente.Helpers
 {
     public class Messages
     {
