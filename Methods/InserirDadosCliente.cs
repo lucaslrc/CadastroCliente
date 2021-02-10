@@ -7,13 +7,15 @@ namespace CadastroCliente.Methods
 {
     public class InserirDadosCliente
     {
-        public string InserirDados(string NomeCliente, DateTime DataNascimentoCliente, string SexoCliente, double CepCliente, string EnderecoCliente, string NumeroCliente, string ComplementoCliente, string BairroCliente, string EstadoCliente, string CidadeCliente)
+        public string InserirDados(string NomeCliente, DateTime DataNascimentoCliente, string SexoCliente, string CepCliente, 
+                                    string EnderecoCliente, string NumeroCliente, string ComplementoCliente, string BairroCliente, 
+                                        string EstadoCliente, string CidadeCliente)
         {
             if (String.IsNullOrEmpty(NomeCliente) || DataNascimentoCliente.ToString().Length < 10)
             {
                 return null;
             }
-            else if (String.IsNullOrEmpty(SexoCliente) || CepCliente < 8)
+            else if (String.IsNullOrEmpty(SexoCliente) || String.IsNullOrEmpty(CepCliente) || CepCliente.Length < 8)
             {
                 return null;
             }

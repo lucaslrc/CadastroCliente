@@ -18,7 +18,6 @@ namespace CadastroCliente
         public static void Main(string[] args)
         {
             InserirDadosIniciais();
-            MostrarDadosIniciais();
             CreateHostBuilder(args).Build().Run();
         }
 
@@ -44,7 +43,7 @@ namespace CadastroCliente
                             Nome = "Cliente Teste",
                             DataNascimento = new DateTime(1999, 01, 01){},
                             Sexo = "Masculino",
-                            Cep = 01001000,
+                            Cep = "01001000",
                             Endereco = "Praça da Sé",
                             Numero = "123",
                             Complemento = "lado ímpar",
@@ -57,7 +56,7 @@ namespace CadastroCliente
                             Nome = "Cliente Teste 2",
                             DataNascimento = new DateTime(1999, 01, 01){},
                             Sexo = "Masculino",
-                            Cep = 01001000,
+                            Cep = "01001000",
                             Endereco = "Praça da Sé",
                             Numero = "123",
                             Complemento = "lado ímpar",
@@ -73,14 +72,6 @@ namespace CadastroCliente
 
                     Console.WriteLine("Database is running...");
                 }
-            }
-        }
-
-        public static void MostrarDadosIniciais()
-        {
-            using (var _context = new ClienteContext())
-            {
-                
             }
         }
     }

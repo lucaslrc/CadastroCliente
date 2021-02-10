@@ -42,17 +42,26 @@ namespace CadastroCliente.Controllers
 
             if (postClientes != null)
             {
-                return Ok(postClientes.InserirDados(model.Nome, model.DataNascimento, model.Sexo, model.Cep, model.Endereco, model.Numero, model.Complemento, model.Bairro, model.Estado, model.Cidade));
+                return Ok(postClientes.InserirDados(model.Nome, model.DataNascimento, model.Sexo, model.Cep, 
+                                                        model.Endereco, model.Numero, model.Complemento, model.Bairro, 
+                                                            model.Estado, model.Cidade));
             }
-
             return BadRequest(Messages.CLIENTE_FALTANDO_DADOS);
         }
 
-        // [HttpPut("EditarCliente")]
-        // public IActionResult EditarCliente()
-        // {
-        //     return null;
-        // }
+        [HttpPut("EditarCliente")]
+        public IActionResult EditarCliente([FromBody] Cliente model)
+        {
+            var putCliente = new EditarDadosCliente();
+
+            if (putCliente != null)
+            {
+                return Ok(putCliente.EditarDados(model.ID, model.Nome, model.DataNascimento, model.Sexo, model.Cep, 
+                                                    model.Endereco, model.Numero, model.Complemento, model.Bairro, 
+                                                        model.Estado, model.Cidade));
+            }
+            return BadRequest(Messages.CLIENTE_ERRO_AO_EDITAR_DADOS);
+        }
 
         // [HttpDelete("RemoverCliente")]
         // public IActionResult RemoverCliente()

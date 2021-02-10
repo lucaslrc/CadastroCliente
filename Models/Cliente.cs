@@ -24,8 +24,9 @@ namespace CadastroCliente.Models
         public string Sexo { get; set; }
 
         [Required]
+        [StringLength(8)]
         [DataType(DataType.PostalCode)]
-        public double Cep { get; set; }
+        public string Cep { get; set; }
 
         [Required]
         [DataType(DataType.Text)]
@@ -44,7 +45,7 @@ namespace CadastroCliente.Models
         public string Bairro { get; set; }
 
         [Required]
-        [DataType(DataType.Text)]
+        [StringLength(2)]
         public string Estado { get; set; }
 
         [Required]
