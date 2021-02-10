@@ -12,10 +12,10 @@ Simples CRUD para cadastro de pessoas.
 3. Utilizando um terminal (bash, powershell etc.) entre no diretório do repositório, exemplo: <br>
 `cd $PATH/CadastroCliente`
 
-4. Instale a ferramenta Entity Framework com o seguinte comando no terminal (dentro da pasta do repositório Git): <br>
+4. Instale a ferramenta Entity Framework com o seguinte comando no terminal: <br>
 `dotnet tool install --global dotnet-ef`
 
-5. Agora digite o comando `dotnet ef database update` para atualizar o banco no servidor MySql (o servidor MySql precisa está rodando). <br>
+5. Agora digite o comando `dotnet ef database update` (dentro do diretório do repositório) para atualizar o banco no servidor MySql (o servidor MySql precisa está rodando). <br>
 
 6. Posteriormente digite o comando `dotnet build` para fazer o build da aplicação e logo em seguida digite o comando `dotnet run`.
 
