@@ -65,6 +65,12 @@ namespace CadastroCliente
 
                     Console.WriteLine("Database is running...");
                 }
+                else
+                {
+                    Console.WriteLine("No database has found, please config your connection in file: /Data/ClienteContext.cs");
+                
+                    System.Environment.Exit(0);
+                }
             }
         }
     }
