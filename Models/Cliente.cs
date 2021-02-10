@@ -4,7 +4,7 @@ namespace CadastroCliente.Models
 {
     public class Cliente
     {
-        public double ID { get; set; }
+        public long ID { get; set; }
         public string Nome { get; set; }
         public DateTime DataNascimento { get; set; }
         public string Sexo { get; set; }
