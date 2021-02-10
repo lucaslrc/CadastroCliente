@@ -2,6 +2,9 @@
 using System.Linq;
 using System.Text;
 using CadastroCliente.Data;
+using CadastroCliente.Helpers;
+using CadastroCliente.Methods;
+using CadastroCliente.Models;
 using Microsoft.AspNetCore.Mvc;
 using Microsoft.Extensions.Logging;
 
@@ -12,9 +15,6 @@ namespace CadastroCliente.Controllers
     public class CadastroClienteController : ControllerBase
     {
         private readonly ILogger<CadastroClienteController> _logger;
-
-        private readonly ClienteContext _context = new ClienteContext();
-
         public CadastroClienteController(ILogger<CadastroClienteController> logger)
         {
             _logger = logger;
@@ -25,25 +25,28 @@ namespace CadastroCliente.Controllers
         [HttpGet("ListarClientes")]
         public IActionResult ListarClientes()
         {
-            using (_context)
+            var getClientes = new ListarDadosCliente();
+
+            if (getClientes.ListarDados() != null)
             {
-                var clientes = _context.Clientes.FirstOrDefault(x => x.ID == 1).Nome.ToString();
-                
-
-                if (!String.IsNullOrEmpty(clientes))
-                {
-                    return Ok(clientes);
-                }
-
-                return NotFound("Clientes não encontrados.");
+                return Ok(getClientes.ListarDados());
             }
+
+            return NotFound("Clientes não encontrados");
         }
 
-        // [HttpPost("AdicionarCliente")]
-        // public IActionResult AdicionarCliente()
-        // {
-        //     return null;
-        // }
+        [HttpPost("AdicionarCliente")]
+        public IActionResult AdicionarCliente([FromBody] Cliente model)
+        {
+            var postClientes = new InserirDadosCliente();
+
+            if (postClientes != null)
+            {
+                return Ok(postClientes.InserirDados(model.Nome, model.DataNascimento, model.Sexo, model.Cep, model.Endereco, model.Numero, model.Complemento, model.Bairro, model.Estado, model.Cidade));
+            }
+
+            return BadRequest(Messages.CLIENTE_FALTANDO_DADOS);
+        }
 
         // [HttpPut("EditarCliente")]
         // public IActionResult EditarCliente()

@@ -31,37 +31,54 @@ namespace CadastroCliente
 
         public static void InserirDadosIniciais()
         {
-            using (var ctx = new ClienteContext())
+            using (var _context = new ClienteContext())
             {
-                if (ctx.Database.EnsureCreated())
+                if (_context.Database.CanConnect())
                 {
-                    //Dados para teste da base
-                    ctx.Clientes.Add(new Cliente {
-                        ID = 1,
-                        Nome = "Cliente Teste",
-                        DataNascimento = new DateTime(1999, 01, 01){},
-                        Sexo = "Masculino",
-                        Cep = 01001000,
-                        Endereco = "Praça da Sé",
-                        Numero = 123,
-                        Complemento = "lado ímpar",
-                        Bairro = "Sé",
-                        Estado = "SP",
-                        Cidade = "São Paulo"
-                    });   
-                    
-                    Console.WriteLine("Database created and test data was added.");
+                    if (_context.Database.EnsureCreated())
+                    {
+                        Console.WriteLine("The Database has been created before.");
 
-                    ctx.SaveChanges();
+                        //Dados para teste da base
+                        _context.Clientes.Add(new Cliente {
+                            Nome = "Cliente Teste",
+                            DataNascimento = new DateTime(1999, 01, 01){},
+                            Sexo = "Masculino",
+                            Cep = 01001000,
+                            Endereco = "Praça da Sé",
+                            Numero = "123",
+                            Complemento = "lado ímpar",
+                            Bairro = "Sé",
+                            Estado = "SP",
+                            Cidade = "São Paulo"
+                        });  
+
+                        _context.Clientes.Add(new Cliente {
+                            Nome = "Cliente Teste 2",
+                            DataNascimento = new DateTime(1999, 01, 01){},
+                            Sexo = "Masculino",
+                            Cep = 01001000,
+                            Endereco = "Praça da Sé",
+                            Numero = "123",
+                            Complemento = "lado ímpar",
+                            Bairro = "Sé",
+                            Estado = "SP",
+                            Cidade = "São Paulo"
+                        });
+
+                        Console.WriteLine("Test datas was added in database.");
+
+                        _context.SaveChanges();
+                    }
+
+                    Console.WriteLine("Database is running...");
                 }
-
-                Console.WriteLine("Running context...");
             }
         }
 
         public static void MostrarDadosIniciais()
         {
-            using (var ctx = new ClienteContext())
+            using (var _context = new ClienteContext())
             {
                 
             }
