@@ -1,12 +1,9 @@
 ﻿using System;
-using System.Collections.Generic;
 using System.Linq;
-using System.Threading.Tasks;
+using System.Text;
 using CadastroCliente.Data;
-using CadastroCliente.Models;
 using Microsoft.AspNetCore.Mvc;
 using Microsoft.Extensions.Logging;
-using CadastroCliente.Methods;
 
 namespace CadastroCliente.Controllers
 {
@@ -16,25 +13,26 @@ namespace CadastroCliente.Controllers
     {
         private readonly ILogger<CadastroClienteController> _logger;
 
-        private readonly ClienteContext _context;
+        private readonly ClienteContext _context = new ClienteContext();
 
         public CadastroClienteController(ILogger<CadastroClienteController> logger)
         {
             _logger = logger;
         }
 
-        [HttpGet("ListarClientes")]
-        public async Task<ActionResult> ListarClientes()
-        {
-            var clientes = new List<Cliente>();
 
+
+        [HttpGet("ListarClientes")]
+        public IActionResult ListarClientes()
+        {
             using (_context)
             {
-                clientes = _context.Clientes.OrderBy(x => x.ID).ToList();
+                var clientes = _context.Clientes.FirstOrDefault(x => x.ID == 1).Nome.ToString();
+                
 
-                if (clientes != null )
+                if (!String.IsNullOrEmpty(clientes))
                 {
-                    return Ok(clientes.ToString());
+                    return Ok(clientes);
                 }
 
                 return NotFound("Clientes não encontrados.");
