@@ -32,7 +32,8 @@ namespace CadastroCliente
                 }
                 else
                 {
-                    Console.WriteLine("No database has found, please config your connection in file: /Data/ClienteContext.cs");
+                    Console.WriteLine("No database has found, please config your connection in file: /Data/ClienteContext.cs\n" 
+                                        + "or verify if you enter a command: dotnet ef database update.");
                 
                     System.Environment.Exit(0);
                 }
