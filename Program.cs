@@ -3,6 +3,7 @@ using Microsoft.AspNetCore.Hosting;
 using Microsoft.Extensions.Hosting;
 using CadastroCliente.Data;
 using CadastroCliente.Models;
+using System.Linq;
 
 namespace CadastroCliente
 {
@@ -10,7 +11,7 @@ namespace CadastroCliente
     {
         public static void Main(string[] args)
         {
-            InserirDadosIniciais();
+            VerificarConexao();
             CreateHostBuilder(args).Build().Run();
         }
 
@@ -21,48 +22,12 @@ namespace CadastroCliente
                     webBuilder.UseStartup<Startup>();
                 });
 
-        public static void InserirDadosIniciais()
+        public static void VerificarConexao()
         {
             using (var _context = new ClienteContext())
             {
                 if (_context.Database.CanConnect())
                 {
-                    if (_context.Database.EnsureCreated())
-                    {
-                        Console.WriteLine("The Database has been created before.");
-
-                        //Dados para teste da base
-                        _context.Clientes.Add(new Cliente {
-                            Nome = "Cliente Teste",
-                            DataNascimento = new DateTime(1999, 01, 01){},
-                            Sexo = "Masculino",
-                            Cep = "01001000",
-                            Endereco = "Praça da Sé",
-                            Numero = "123",
-                            Complemento = "lado ímpar",
-                            Bairro = "Sé",
-                            Estado = "SP",
-                            Cidade = "São Paulo"
-                        });  
-
-                        _context.Clientes.Add(new Cliente {
-                            Nome = "Cliente Teste 2",
-                            DataNascimento = new DateTime(1999, 01, 01){},
-                            Sexo = "Masculino",
-                            Cep = "01001000",
-                            Endereco = "Praça da Sé",
-                            Numero = "123",
-                            Complemento = "lado ímpar",
-                            Bairro = "Sé",
-                            Estado = "SP",
-                            Cidade = "São Paulo"
-                        });
-
-                        Console.WriteLine("Test datas was added in database.");
-
-                        _context.SaveChanges();
-                    }
-
                     Console.WriteLine("Database is running...");
                 }
                 else
