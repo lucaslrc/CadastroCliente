@@ -2,7 +2,6 @@ using System;
 using System.Linq;
 using CadastroCliente.Data;
 using CadastroCliente.Helpers;
-using CadastroCliente.Models;
 
 namespace CadastroCliente.Methods
 {
@@ -15,8 +14,6 @@ namespace CadastroCliente.Methods
             var _context = new ClienteContext();
             var existingID = _context.Clientes.Where(x => x.ID == ID);
 
-            //opcao e o dado que o adm quer alterar nos parametros da funcao
-
             if (existingID != null)
             {
                 if (!String.IsNullOrEmpty(NomeCliente))
@@ -28,7 +25,7 @@ namespace CadastroCliente.Methods
                     }
                 }
                 
-                if (DataNascimentoCliente.ToString().Length > 10)
+                if (!String.IsNullOrEmpty(DataNascimentoCliente.ToString()) && DataNascimentoCliente.ToString().Length == 21)
                 {
                     if (!existingID.Any(x => x.DataNascimento == DataNascimentoCliente))
                     {

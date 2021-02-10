@@ -1,8 +1,4 @@
-﻿using System;
-using System.Linq;
-using System.Text;
-using CadastroCliente.Data;
-using CadastroCliente.Helpers;
+﻿using CadastroCliente.Helpers;
 using CadastroCliente.Methods;
 using CadastroCliente.Models;
 using Microsoft.AspNetCore.Mvc;
@@ -27,12 +23,14 @@ namespace CadastroCliente.Controllers
         {
             var getClientes = new ListarDadosCliente();
 
-            if (getClientes.ListarDados() != null)
+            var result = getClientes.ListarDados();
+
+            if (result != null)
             {
-                return Ok(getClientes.ListarDados());
+                return Ok(result);
             }
 
-            return NotFound("Clientes não encontrados");
+            return NotFound(Messages.CLIENTES_NAO_ENCONTRADOS);
         }
 
         [HttpPost("AdicionarCliente")]
@@ -40,11 +38,13 @@ namespace CadastroCliente.Controllers
         {
             var postClientes = new InserirDadosCliente();
 
-            if (postClientes != null)
-            {
-                return Ok(postClientes.InserirDados(model.Nome, model.DataNascimento, model.Sexo, model.Cep, 
+            var result = postClientes.InserirDados(model.Nome, model.DataNascimento, model.Sexo, model.Cep, 
                                                         model.Endereco, model.Numero, model.Complemento, model.Bairro, 
-                                                            model.Estado, model.Cidade));
+                                                            model.Estado, model.Cidade);
+
+            if (result != null)
+            {
+                return Ok(result);
             }
             return BadRequest(Messages.CLIENTE_FALTANDO_DADOS);
         }
@@ -54,19 +54,29 @@ namespace CadastroCliente.Controllers
         {
             var putCliente = new EditarDadosCliente();
 
-            if (putCliente != null)
-            {
-                return Ok(putCliente.EditarDados(model.ID, model.Nome, model.DataNascimento, model.Sexo, model.Cep, 
+            var result = putCliente.EditarDados(model.ID, model.Nome, model.DataNascimento, model.Sexo, model.Cep, 
                                                     model.Endereco, model.Numero, model.Complemento, model.Bairro, 
-                                                        model.Estado, model.Cidade));
+                                                        model.Estado, model.Cidade);
+
+            if (result != null)
+            {
+                return Ok(result);
             }
             return BadRequest(Messages.CLIENTE_ERRO_AO_EDITAR_DADOS);
         }
 
-        // [HttpDelete("RemoverCliente")]
-        // public IActionResult RemoverCliente()
-        // {
-        //     return null;
-        // }
+        [HttpDelete("RemoverCliente")]
+        public IActionResult RemoverCliente([FromBody] Cliente model)
+        {
+            var deleteCliente = new RemoverDadosCliente();
+
+            var result = deleteCliente.RemoverDados(model.ID);
+
+            if (result != null)
+            {
+                return Ok(result);
+            }
+            return BadRequest(Messages.CLIENTE_ERRO_AO_REMOVER);
+        }
     }
 }

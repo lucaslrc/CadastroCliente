@@ -11,44 +11,34 @@ namespace CadastroCliente.Models
         [DatabaseGenerated(DatabaseGeneratedOption.Identity)]
         public long ID { get; set; }
 
-        [Required]
         [DataType(DataType.Text)]
         public string Nome { get; set; }
 
-        [Required]
         [DataType(DataType.Date)]
         public DateTime DataNascimento { get; set; }
 
-        [Required]
         [DataType(DataType.Text)]
         public string Sexo { get; set; }
 
-        [Required]
         [StringLength(8)]
         [DataType(DataType.PostalCode)]
         public string Cep { get; set; }
 
-        [Required]
         [DataType(DataType.Text)]
         public string Endereco { get; set; }
 
-        [Required]
         [DataType(DataType.Text)]
         public string Numero { get; set; }
 
-        [Required]
         [DataType(DataType.Text)]
         public string Complemento { get; set; }
 
-        [Required]
         [DataType(DataType.Text)]
         public string Bairro { get; set; }
 
-        [Required]
         [StringLength(2)]
         public string Estado { get; set; }
 
-        [Required]
         [DataType(DataType.Text)]
         public string Cidade { get; set; }
     }
