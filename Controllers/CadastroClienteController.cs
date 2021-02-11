@@ -6,6 +6,7 @@ using Microsoft.Extensions.Logging;
 
 namespace CadastroCliente.Controllers
 {
+    [Produces("application/json")]
     [ApiController]
     [Route("api/[controller]")]
     public class CadastroClienteController : ControllerBase
