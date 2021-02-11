@@ -22,26 +22,6 @@ namespace CadastroCliente
         // This method gets called by the runtime. Use this method to add services to the container.
         public void ConfigureServices(IServiceCollection services)
         {
-            services.AddCors(options =>
-            {
-                options.AddDefaultPolicy(
-                    builder =>
-                    {
-                        builder.WithOrigins("http://example.com",
-                                            "http://www.contoso.com");
-                    });
-            });
-
-            services.AddMvc().SetCompatibilityVersion(Microsoft.AspNetCore.Mvc.CompatibilityVersion.Latest);
-            services.AddCors(options => 
-            {
-                options.AddPolicy("CorsPolicy",
-                    builder => builder.AllowAnyOrigin()
-                        .AllowAnyMethod()
-                        .AllowAnyHeader()
-                        .AllowCredentials());
-            });
-
             services.AddSpaStaticFiles();
             services.AddControllers();
             services.AddSwaggerGen(c =>
@@ -71,7 +51,6 @@ namespace CadastroCliente
                 endpoints.MapControllers();
             });
 
-            app.UseCors("CorsPolicy");
             app.UseStaticFiles();
         }
     }

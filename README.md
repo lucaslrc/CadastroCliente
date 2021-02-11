@@ -23,13 +23,13 @@ Simples CRUD para cadastro de pessoas.
 
 8. Caso a aplicação rode sem nenhum problema, basta fazer as chamadas através do Postman usando os seguintes links: <br>
 
-`https://localhost:5001/api/CadastroCliente/ListarClientes`
+`https://localhost:5000/api/CadastroCliente/ListarClientes`
 
-`https://localhost:5001/api/CadastroCliente/AdicionarCliente`
+`https://localhost:5000/api/CadastroCliente/AdicionarCliente`
 
-`https://localhost:5001/api/CadastroCliente/EditarCliente`
+`https://localhost:5000/api/CadastroCliente/EditarCliente`
 
-`https://localhost:5001/api/CadastroCliente/RemoverCliente`
+`https://localhost:5000/api/CadastroCliente/RemoverCliente`
 
 Ps.: Lembrando que é necessário preencher o campo body em cada chamada na API (utilizando o Postman).
 
