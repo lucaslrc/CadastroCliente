@@ -32,3 +32,5 @@ Simples CRUD para cadastro de pessoas.
 `https://localhost:5001/api/CadastroCliente/RemoverCliente`
 
 Ps.: Lembrando que é necessário preencher o campo body em cada chamada na API (utilizando o Postman).
+
+[![Run in Postman](https://run.pstmn.io/button.svg)](https://god.postman.co/run-collection/b666f6297c15963024ac)
