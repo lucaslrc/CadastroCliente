@@ -1,12 +1,12 @@
 ﻿using CadastroCliente.Helpers;
 using CadastroCliente.Methods;
 using CadastroCliente.Models;
+using Microsoft.AspNetCore.Cors;
 using Microsoft.AspNetCore.Mvc;
 using Microsoft.Extensions.Logging;
 
 namespace CadastroCliente.Controllers
 {
-    [Produces("application/json")]
     [ApiController]
     [Route("api/[controller]")]
     public class CadastroClienteController : ControllerBase
@@ -16,8 +16,6 @@ namespace CadastroCliente.Controllers
         {
             _logger = logger;
         }
-
-
 
         [HttpGet("ListarClientes")]
         public IActionResult ListarClientes()
