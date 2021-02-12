@@ -1,6 +1,6 @@
 using System;
 using System.Linq;
-using Newtonsoft.Json;
+using System.Text.Json;
 using CadastroCliente.Data;
 
 namespace CadastroCliente.Methods
@@ -10,13 +10,13 @@ namespace CadastroCliente.Methods
         private readonly ClienteContext _context = new ClienteContext();
         public string ListarDados()
         {
-            var clientes = _context.Clientes.OrderBy(x => x.ID).ToList();
+            var clientes = _context.Clientes.OrderBy(x => x.ID).ToArray().ToList();
 
-            var json = JsonConvert.SerializeObject(clientes, Formatting.Indented);
+            string jsonObj = JsonSerializer.Serialize(clientes);
 
-            if (!String.IsNullOrEmpty(json))
+            if (!String.IsNullOrEmpty(jsonObj))
             {
-                return json;
+                return jsonObj;
             }
             return null;
         }
